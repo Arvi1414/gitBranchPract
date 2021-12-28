@@ -1,7 +1,9 @@
 package gitItemNames;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,67 +12,46 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class gitPractOneBase {
 
-	static WebDriver driver;
-	
-	public static WebDriver browserLaunch() {
-
+	public static void main(String[] args) {
+		//git upload Amazon Files
+		
+		String text1="";
+		String text2="";
+		
 		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+		
+		WebDriver driver = new ChromeDriver();
+		
 		driver.manage().window().maximize();
-		return driver;
-	}
-	
-	public static void launchUrl(String url) {
-		driver.get(url);
-	}
-	
-	public static void searchItem() {
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		
-		gitPractLocator goTo = new gitPractLocator();
+		driver.get("https://www.amazon.in/");
 		
-		goTo.search.sendKeys("Apple Watch");
+		WebElement search = driver.findElement(By.id("twotabsearchtextbox"));
+		search.sendKeys("Apple Watch");
 		
-		goTo.submit.click();
+		WebElement searchClick = driver.findElement(By.xpath("//input[@type='submit']"));
+		searchClick.click();
+		
+		List<WebElement> itemNames = driver.findElements(By.xpath("//span[@class='a-size-medium a-color-base a-text-normal']"));
+		
+		List<WebElement> itemPrice = driver.findElements(By.xpath("//span[@class='a-price-whole']"));
+			
+		System.out.println(itemNames.size());
+		System.out.println(itemPrice.size());
+			
+		for(int i=0;i<itemNames.size();i++) {
+			
+			WebElement Name = itemNames.get(i);
+			String name = Name.getText();
+			
+			WebElement Price = itemPrice.get(i);
+			String price = Price.getText();
+			System.out.println("Item Name : " + name);
+			System.out.println("Item Price : " + price);
+		}
 
 	}
-	
-	public static void getNames() {
-		
-		gitPractLocator goTo = new gitPractLocator();
-		
-		String text1 = goTo.item1Loc.getText();
-		System.out.println("Item Name : " + text1);
-		
-		String rate1 = goTo.itemRate1Loc.getText();
-		System.out.println("Item Rate : " + rate1);
-		
-		String text2 = goTo.item2Loc.getText();
-		System.out.println("Item Name : " + text2);
-			
-		String rate2 = goTo.itemRate2Loc.getText();	
-		System.out.println("Item Rate : " + rate2);
-		
-		String text3 = goTo.item3Loc.getText();
-		System.out.println("Item Name : " + text3);
-			
-		String rate3 = goTo.itemRate3Loc.getText();	
-		System.out.println("Item Rate : " + rate3);
-		
-		String text4 = goTo.item4Loc.getText(); System.out.println("Item Name : " + text4);
-	  
-		String rate4 = goTo.itemRate4Loc.getText(); System.out.println("Item Rate : " + rate4);
-		  
-	  	String text5 = goTo.item5Loc.getText(); System.out.println("Item Name : " + text5);
-		  
-		String rate5 = goTo.itemRate5Loc.getText(); System.out.println("Item Rate : " + rate5);
-		  
-		String text6 = goTo.item6Loc.getText(); System.out.println("Item Name : " +  text6);
-		  
-		String rate6 = goTo.itemRate6Loc.getText(); System.out.println("Item Rate : "  + rate6);
-		 
-		
-			
-	}
+
 	
 }

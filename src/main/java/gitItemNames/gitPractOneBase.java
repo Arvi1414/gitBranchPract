@@ -57,17 +57,7 @@ public class gitPractOneBase {
 		String rate3 = goTo.itemRate3Loc.getText();	
 		System.out.println("Item Rate : " + rate3);
 		
-		String text4 = goTo.item4Loc.getText(); System.out.println("Item Name : " + text4);
-	  
-		String rate4 = goTo.itemRate4Loc.getText(); System.out.println("Item Rate : " + rate4);
-		  
-	  	String text5 = goTo.item5Loc.getText(); System.out.println("Item Name : " + text5);
-		  
-		String rate5 = goTo.itemRate5Loc.getText(); System.out.println("Item Rate : " + rate5);
-		  
-		String text6 = goTo.item6Loc.getText(); System.out.println("Item Name : " +  text6);
-		  
-		String rate6 = goTo.itemRate6Loc.getText(); System.out.println("Item Rate : "  + rate6);
+		
 		 
 		
 			

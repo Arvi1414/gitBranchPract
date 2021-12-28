@@ -1,7 +1,9 @@
 package gitItemNames;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -37,37 +39,24 @@ public class gitPractOneBase {
 	
 	public static void getNames() {
 		
-		gitPractLocator goTo = new gitPractLocator();
+		List<WebElement> itemNames = driver.findElements(By.xpath("//span[@class='a-size-medium a-color-base a-text-normal']"));
 		
-		String text1 = goTo.item1Loc.getText();
-		System.out.println("Item Name : " + text1);
-		
-		String rate1 = goTo.itemRate1Loc.getText();
-		System.out.println("Item Rate : " + rate1);
-		
-		String text2 = goTo.item2Loc.getText();
-		System.out.println("Item Name : " + text2);
+		List<WebElement> itemPrice = driver.findElements(By.xpath("//span[@class='a-price-whole']"));
 			
-		String rate2 = goTo.itemRate2Loc.getText();	
-		System.out.println("Item Rate : " + rate2);
-		
-		String text3 = goTo.item3Loc.getText();
-		System.out.println("Item Name : " + text3);
+		System.out.println(itemNames.size());
+		System.out.println(itemPrice.size());
 			
-		String rate3 = goTo.itemRate3Loc.getText();	
-		System.out.println("Item Rate : " + rate3);
-		
-		String text4 = goTo.item4Loc.getText(); System.out.println("Item Name : " + text4);
-	  
-		String rate4 = goTo.itemRate4Loc.getText(); System.out.println("Item Rate : " + rate4);
-		  
-	  	String text5 = goTo.item5Loc.getText(); System.out.println("Item Name : " + text5);
-		  
-		String rate5 = goTo.itemRate5Loc.getText(); System.out.println("Item Rate : " + rate5);
-		  
-		String text6 = goTo.item6Loc.getText(); System.out.println("Item Name : " +  text6);
-		  
-		String rate6 = goTo.itemRate6Loc.getText(); System.out.println("Item Rate : "  + rate6);
+		for(int i=0;i<itemNames.size();i++) {
+			
+			WebElement Name = itemNames.get(i);
+			String name = Name.getText();
+			
+			WebElement Price = itemPrice.get(i);
+			String price = Price.getText();
+			System.out.println("Item Name : " + name);
+			System.out.println("Item Price : " + price);
+		}
+
 		 
 		
 			

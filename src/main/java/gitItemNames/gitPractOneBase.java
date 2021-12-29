@@ -12,32 +12,27 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class gitPractOneBase {
 
-	static WebDriver driver;
-	
-	public static WebDriver browserLaunch() {
 
+	public static void main(String[] args) {
+		//git upload Amazon Files
+		
+		String text1="";
+		String text2="";
+		
 		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+		
+		WebDriver driver = new ChromeDriver();
+		
 		driver.manage().window().maximize();
-		return driver;
-	}
-	
-	public static void launchUrl(String url) {
-		driver.get(url);
-	}
-	
-	public static void searchItem() {
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		
-		gitPractLocator goTo = new gitPractLocator();
+		driver.get("https://www.amazon.in/");
 		
-		goTo.search.sendKeys("Apple Watch");
+		WebElement search = driver.findElement(By.id("twotabsearchtextbox"));
+		search.sendKeys("Apple Watch");
 		
-		goTo.submit.click();
-
-	}
-	
-	public static void getNames() {
+		WebElement searchClick = driver.findElement(By.xpath("//input[@type='submit']"));
+		searchClick.click();
 		
 		List<WebElement> itemNames = driver.findElements(By.xpath("//span[@class='a-size-medium a-color-base a-text-normal']"));
 		
@@ -56,10 +51,10 @@ public class gitPractOneBase {
 			System.out.println("Item Name : " + name);
 			System.out.println("Item Price : " + price);
 		}
-
-		 
 		
-			
+		
+		
+
 	}
 	
 }
